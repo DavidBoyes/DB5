@@ -28,6 +28,10 @@ Though we haven’t used this capability in Vesper, we made it so that you can h
 
 If you ask for a value from a theme other than Default, and that value is not specified in that theme, it falls back to Default to get that value.
 
+### Changing theme without building
+
+If UIFileSharingEnabled is set to YES in the applications info plist then you can add a DB5.plist file to the app via iTunes to test with.
+
 ### Demo app
 
 The demo app is straightforward and small. DB5AppDelegate loads the themes. DB5ViewController shows some example use.

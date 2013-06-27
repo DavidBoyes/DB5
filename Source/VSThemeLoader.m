@@ -25,9 +25,16 @@
 	self = [super init];
 	if (self == nil)
 		return nil;
-	
-	NSString *themesFilePath = [[NSBundle mainBundle] pathForResource:@"DB5" ofType:@"plist"];
-	NSDictionary *themesDictionary = [NSDictionary dictionaryWithContentsOfFile:themesFilePath];
+
+    // Check if there is a testing theme added via iTunes
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *themesFilePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"DB5.plist"];
+    
+    // If the testing theme does not exist use the default file
+    if (![[NSFileManager defaultManager] fileExistsAtPath:themesFilePath])
+        themesFilePath = [[NSBundle mainBundle] pathForResource:@"DB5" ofType:@"plist"];
+        
+    NSDictionary *themesDictionary = [NSDictionary dictionaryWithContentsOfFile:themesFilePath];
 	
 	NSMutableArray *themes = [NSMutableArray array];
 	for (NSString *oneKey in themesDictionary) {
